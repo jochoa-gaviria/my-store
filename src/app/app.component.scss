@@ -4,3 +4,30 @@
   overflow: auto;
   background: red;
 }
+
+.products--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  div {
+    padding: 7px;
+    img {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+    }
+    h2, p {
+      margin: 0;
+    }
+  }
+}
+
+.message-error {
+  background: red;
+  color: white;
+  opacity: 0;
+  transition: all inner .5s;
+  &.invalid {
+    opacity: 1;
+
+  }
+}
