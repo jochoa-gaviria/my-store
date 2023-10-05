@@ -1,0 +1,90 @@
+<h1>Formulario</h1>
+<form #myForm="ngForm" (ngSubmit)="onRegister()">
+  <div class="input-group">
+    <label>Nombre</label>
+    <input required type="text" id="name" [(ngModel)]="register.name" name="name">
+    <p>Mensaje</p>
+  </div>
+  <div class="input-group">
+    <label>Email</label>
+    <input required type="email" id="email" [(ngModel)]="register.email" name="email">
+    <p>Mensaje</p>
+  </div>
+  <div class="input-group">
+    <label>Password</label>
+    <input required type="password" id="password" [(ngModel)]="register.password" name="password">
+    <p>Mensaje</p>
+  </div>
+  <button type="submit" [disabled]="myForm.invalid">Registrar</button>
+</form>
+<hr>
+
+<h1>Class & Style</h1>
+<input type="text" required #nameInputClass="ngModel" [(ngModel)] = person.name />
+<p class="message-error" [class.invalid]="nameInputClass.invalid" >El campo es requerido</p>
+<hr>
+
+<h1>*ngFor Objects</h1>
+<div class="products--grid">
+  <div *ngFor="let product of products">
+    <img [src]="product.image" alt="img">
+    <h2>{{product.price}}</h2>
+    <p>{{product.name}}</p>
+  </div>
+</div>
+<hr>
+
+<h1>*ngFor</h1>
+<input type="text" required #newNameInput="ngModel" [(ngModel)]="newName" />
+<button [disabled]="!newNameInput.valid" (click)="addNewName()">Add name</button>
+<ul>
+  <p *ngIf="names.length < 1">No hay nombres...</p>
+  <li *ngFor="let name of names; index as i">
+    {{i}}: {{name}}
+    <button (click)="deleteName(i)">Delete</button>
+  </li>
+</ul>
+<hr>
+
+<p>*ngIf</p>
+<input type="text" required #nameInput2="ngModel" [(ngModel)]="person.name" />
+<p *ngIf="!nameInput2.valid; else block">Error en nombre</p>
+<ng-template #block>
+  <p>El nombre es correcto</p>
+</ng-template>
+<hr>
+
+<h1>NgModel</h1>
+<p>Nombre {{ person.name }}</p>
+<!-- #nameInput="ngModel" >> Variable de salida -->
+<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name" />
+<p>Valid: {{ nameInput.valid }}</p>
+
+<p>Edad {{ person.age }}</p>
+<!-- #nameInput="ngModel" >> Variable de salida -->
+<input type="number" max="50" min="2" required #ageInput="ngModel" [(ngModel)]="person.age" />
+<p>Valid: {{ ageInput.valid }}</p>
+<hr>
+
+<h1>Eventos</h1>
+<button [disabled]="buttonDisable">Enviar</button>
+<button (click)="toggleButton()">Toggle Button</button>
+<p>Edad {{ person.age }}</p>
+<button (click)="increaseAge()">Age ++</button>
+<div class="box" (scroll)="onBoxScroll($event)">
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia obcaecati at voluptate eligendi reprehenderit eveniet vero, impedit, fugiat, consectetur labore iusto nemo quo perferendis quas illum! Animi dolore velit consectetur? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia obcaecati at voluptate eligendi reprehenderit eveniet vero, impedit, fugiat, consectetur labore iusto nemo quo perferendis quas illum! Animi dolore velit consectetur?</p>
+</div>
+<input type="text" [value]="person.name" (keyup)="onInputKeyUp($event)">
+<hr>
+
+<h1>Propiedades</h1>
+<button [disabled]="buttonDisable">Enviar</button>
+<input type="text" [value]="person.name" />
+<progress max="100" [value]="person.age"></progress>
+<img [src]="person.avatar" alt="image" width="200">
+<hr>
+
+<h1>Hola mundo</h1>
+<h2>{{ 'Hola Mundo '.repeat(5) }}</h2>
+<p>3 + 3 = {{ 3 + 3 }}</p>
+<h3>Hola, soy {{ person.name }}, tengo {{ person.age }} años. Mucho gusto</h3>
