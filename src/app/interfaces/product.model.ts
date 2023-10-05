@@ -1,10 +1,15 @@
 interface Product {
   id: string,
-  name: string,
+  title: string,
   price: number,
   image: string,
-  category?: string
+  category: string,
+  rating: Rating
 }
 
+interface Rating {
+  rate: number,
+  count: number
+}
 
 export { Product }
