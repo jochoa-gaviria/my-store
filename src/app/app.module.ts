@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { ImgComponent } from './components/img/img.component';
 import { ProductComponent } from './components/product/product.component';
 import { AngularBasicsComponent } from './components/angular-basics/angular-basics.component';
+import { ProductsComponent } from './components/products/products.component';
+import { NavComponent } from './components/nav/nav.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { AngularBasicsComponent } from './components/angular-basics/angular-basi
     AppComponent,
     ImgComponent,
     ProductComponent,
-    AngularBasicsComponent
+    AngularBasicsComponent,
+    ProductsComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

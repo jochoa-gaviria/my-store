@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/interfaces/product.model';
 
 @Component({
@@ -13,9 +13,14 @@ export class ProductComponent {
     image: '',
     name: ''
   };
+  @Output() addedProduct = new EventEmitter<Product>()
 
 
   imgLoaded(result: Boolean) {
     console.log(`Log parent: img loaded ${result}`);
+  }
+
+  onAddToCart() {
+    this.addedProduct.emit(this.product);
   }
 }
