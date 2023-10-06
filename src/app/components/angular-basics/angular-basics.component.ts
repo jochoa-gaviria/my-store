@@ -30,25 +30,23 @@ export class AngularBasicsComponent {
       id: "1",
       title: 'EL mejor juguete',
       price: 565,
-      image: './assets/images/toy.jpg',
-      category: 'all',
-      description: "juguete",
-      rating: {
-        rate: 3.5,
-        count: 500
-      }
+      images: ['./assets/images/toy.jpg'],
+      category: {
+        id:"1",
+        name: "all"
+      },
+      description: "juguete"
     },
     {
       id: "2",
       title: 'Bicicleta casi nueva',
       price: 356,
-      image: './assets/images/bike.jpg',
-      category: 'all',
-      description: "bicicleta",
-      rating: {
-        rate: 4.5,
-        count: 600
-      }
+      images: ['./assets/images/bike.jpg'],
+      category: {
+        id:"1",
+        name: "all"
+      },
+      description: "bicicleta"
     }
   ];
 

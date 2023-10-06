@@ -1,18 +1,18 @@
-<p>
-  La cantidad de productos: {{ shoppingCart.length }}
-</p>
-<p>
-  El valor total: {{ total }}
-</p>
-<p>
-  Today: {{ today | date: 'short' }}
-</p>
-<p>
-  Today: {{ date | date: 'yyyy.MM.dd' }}
-</p>
-<p>
-  Today: {{ date | timeAgo }}
-</p>
 <div class="products--grid">
-  <app-product (addedProduct)="onAddedProductToCart($event)" [product]="product" *ngFor="let product of products"></app-product>
+  <app-product
+    (addedProduct)="onAddedProductToCart($event)"
+    (showProductDetail)="onShowProductDetail($event)"
+    [product]="product"
+    *ngFor="let product of products"
+    >
+  </app-product>
+  <button (click)="loadMore()">Load more</button>
+</div>
+<div class="product-detail" [class.active]="showProductDetail">
+  <div *ngIf="productChoosen">
+    <button (click)="toggleProductDetail()">Close</button>
+    <h1>{{ productChoosen.title }}</h1>
+    <app-img [img]="productChoosen.images[0]"></app-img>
+    <p>{{ productChoosen.description }}</p>
+  </div>
 </div>
