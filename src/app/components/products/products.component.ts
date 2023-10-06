@@ -51,9 +51,12 @@ export class ProductsComponent implements OnInit {
 
   onShowProductDetail(id: string) {
     this.productService.getOne(id)
-    .subscribe(data => {
-      this.productChoosen = data;
-      this.toggleProductDetail();
+    .subscribe({
+      error: (err) => console.log({err}),
+      next: (data) => {
+        this.productChoosen = data;
+        this.toggleProductDetail();
+      }
     });
   }
 
@@ -64,4 +67,7 @@ export class ProductsComponent implements OnInit {
       this.offset += this.limit;
     });
   }
+
+  //ZIP => use for concat more than one request, and use only one subscribe. The result is into an arr
+  //SwitchMap => use for request that depent on in other. Concat the response in only one.
 }

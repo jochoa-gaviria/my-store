@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient  } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Product } from '../interfaces/product.model';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { CreateProductDto } from '../interfaces/create.product.model';
 import { UpdateProductDto } from '../interfaces/update.product.model';
+import { environment } from 'src/environments/environments';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { UpdateProductDto } from '../interfaces/update.product.model';
 })
 export class ProductsService {
 
-  private apiUrl = 'https://young-sands-07814.herokuapp.com/api/products';
+  private apiUrl = `${environment.API_URL}/api/products`;
 
   constructor(
     private http: HttpClient,
@@ -20,6 +21,17 @@ export class ProductsService {
 
   getAll() : Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl)
+    .pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === HttpStatusCode.InternalServerError) {
+          return throwError(() => new Error('Algo está fallando en el server.'));
+        }
+        if (error.status === HttpStatusCode.NotFound) {
+          return throwError(() => new Error('El producto no existe.'));
+        }
+        return throwError(() => new Error('Ups algo salió mal'));
+      })
+    )
   }
 
   getAllByPage(limit: number, offset: number) : Observable<Product[]> {
