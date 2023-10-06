@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./img.component.scss']
 })
 export class ImgComponent {
-  @Input() img: string = '';
+  @Input() img = '';
   @Output() loaded = new EventEmitter<boolean>();
   imgDefault = '/assets/images/404.jpg';
 

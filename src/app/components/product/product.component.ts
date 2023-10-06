@@ -12,6 +12,7 @@ export class ProductComponent {
     price: 0,
     image: '',
     title: '',
+    description: '',
     category: '',
     rating: {
       rate: 0,
@@ -21,7 +22,7 @@ export class ProductComponent {
   @Output() addedProduct = new EventEmitter<Product>()
 
 
-  imgLoaded(result: Boolean) {
+  imgLoaded(result: boolean) {
     console.log(`Log parent: img loaded ${result}`);
   }
 

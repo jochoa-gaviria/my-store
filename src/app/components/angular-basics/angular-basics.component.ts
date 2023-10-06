@@ -7,7 +7,8 @@ import { Product } from 'src/app/interfaces/product.model';
   styleUrls: ['./angular-basics.component.scss']
 })
 export class AngularBasicsComponent {
-  buttonDisable: boolean = true;
+
+  buttonDisable = true;
 
   person = {
     name: "Juan",
@@ -15,8 +16,8 @@ export class AngularBasicsComponent {
     avatar: 'https://source.unsplash.com/random'
   }
 
-  names:string[] = ['Juan', 'David', 'Daniela', 'Erika'];
-  newName:string = '';
+  names = ['Juan', 'David', 'Daniela', 'Erika'];
+  newName = '';
 
   register = {
     name: '',
@@ -31,6 +32,7 @@ export class AngularBasicsComponent {
       price: 565,
       image: './assets/images/toy.jpg',
       category: 'all',
+      description: "juguete",
       rating: {
         rate: 3.5,
         count: 500
@@ -42,6 +44,7 @@ export class AngularBasicsComponent {
       price: 356,
       image: './assets/images/bike.jpg',
       category: 'all',
+      description: "bicicleta",
       rating: {
         rate: 4.5,
         count: 600

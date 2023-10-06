@@ -10,6 +10,9 @@ import { ProductComponent } from './components/product/product.component';
 import { AngularBasicsComponent } from './components/angular-basics/angular-basics.component';
 import { ProductsComponent } from './components/products/products.component';
 import { NavComponent } from './components/nav/nav.component';
+import { ReversePipe } from './pipes/reverse.pipe';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { NavComponent } from './components/nav/nav.component';
     ProductComponent,
     AngularBasicsComponent,
     ProductsComponent,
-    NavComponent
+    NavComponent,
+    ReversePipe,
+    TimeAgoPipe,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
