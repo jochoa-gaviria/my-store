@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/interfaces/product.model';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -8,10 +8,11 @@ import { ProductsService } from 'src/app/services/products.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
   total = 0;
   shoppingCart : Product[] = [];
-  products: Product[] = [];
+  @Input() products: Product[] = [];
+  @Output() loadMore = new EventEmitter<boolean>();
   showProductDetail = false;
   limit = 10;
   offset = 0;
@@ -30,14 +31,9 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private storeService: StoreService,
-    private productService: ProductsService
+    private productService: ProductsService,
   ) {
     this.shoppingCart = this.storeService.getShoppingCart();
-  }
-
-
-  ngOnInit(): void {
-   this.loadMore();
   }
 
   onAddedProductToCart(product: Product) {
@@ -60,12 +56,8 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  loadMore() {
-    this.productService.getAllByPage(this.limit, this.offset)
-    .subscribe(data => {
-      this.products = this.products.concat(data);
-      this.offset += this.limit;
-    });
+  onClickloadMore() {
+    this.loadMore.emit(true);
   }
 
   //ZIP => use for concat more than one request, and use only one subscribe. The result is into an arr

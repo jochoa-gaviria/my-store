@@ -13,28 +13,30 @@
   <div class="side-menu" [class.active]="activeMenu">
     <button (click)="toggleMenu()">Close</button>
     <ul>
-      <li><a href="">All</a></li>
-      <li><a href="">Clothes</a></li>
-      <li><a href="">Electronics</a></li>
+      <li><a routerLink="home">All</a></li>
+      <li *ngFor="let category of categories">
+        <a routerLinkActive="active" [routerLink]="['category', category.id]">{{category.name}}</a>
+      </li>
     </ul>
   </div>
 </div>
 <div class="hide-mobile">
   <div>
     <nav>
-      <a class="logo" href="">
+      <a class="logo" routerLink="home">
         <img src="./assets/svg/logo_yard.svg" alt="logo">
       </a>
       <ul>
-        <li><a href="">All</a></li>
-        <li><a href="">Clothes</a></li>
-        <li><a href="">Electronics</a></li>
+        <li><a routerLink="home">All</a></li>
+        <li *ngFor="let category of categories">
+          <a routerLinkActive="active" [routerLink]="['category', category.id]">{{category.name}}</a>
+        </li>
       </ul>
     </nav>
     <div class="info">
       <div class="account">david.ochoa@ceiba.com.co</div>
       <div class="cart">
-        <a href="">
+        <a routerLink="home">
           <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
         </a>
         <span class="counter">{{counter}}</span>
