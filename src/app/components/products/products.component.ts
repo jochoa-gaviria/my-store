@@ -29,6 +29,12 @@ export class ProductsComponent {
     },
   };
 
+  @Input() set productId(id: string | null) {
+    if (id) {
+      this.onShowProductDetail(id);
+    }
+  };
+
   constructor(
     private storeService: StoreService,
     private productService: ProductsService,
@@ -46,12 +52,14 @@ export class ProductsComponent {
   }
 
   onShowProductDetail(id: string) {
+    if (!this.showProductDetail) {
+      this.showProductDetail = true;
+    }
     this.productService.getOne(id)
     .subscribe({
       error: (err) => console.log({err}),
       next: (data) => {
         this.productChoosen = data;
-        this.toggleProductDetail();
       }
     });
   }

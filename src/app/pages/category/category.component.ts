@@ -11,6 +11,7 @@ import { ProductsService } from 'src/app/services/products.service';
 export class CategoryComponent implements OnInit {
   products: Product[] = [];
   categoryId: string | null = null;
+  productId: string | null = null;
   limit = 10;
   offset = 0;
 
@@ -27,6 +28,10 @@ export class CategoryComponent implements OnInit {
       this.categoryId = params.get('id');
       this.loadMore();
     });
+    this.activedRoute.queryParamMap
+    .subscribe(params => {
+      this.productId = params.get('product');
+    })
   }
 
   loadMore() {

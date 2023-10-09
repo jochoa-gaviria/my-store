@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/interfaces/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -12,13 +13,19 @@ export class HomeComponent {
   products: Product[] = [];
   limit = 10;
   offset = 0;
+  productId: string | null = null;
 
   constructor(
-    private productService: ProductsService
+    private productService: ProductsService,
+    private activedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.loadMore();
+    this.activedRoute.queryParamMap
+    .subscribe(params => {
+      this.productId = params.get('product');
+    })
   }
 
 
